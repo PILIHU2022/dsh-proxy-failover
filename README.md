@@ -282,9 +282,10 @@ OS 解析卡死时 c-ares 兜底、全局 dispatcher 安装/还原、原地重�
   [`docs/market-submission.md`](./docs/market-submission.md)
 
 目录条目是 `awesome-dsh-plugin/awesome-dsh-plugin` 仓库里的
-`data/plugins/PILIHU2022__dsh-proxy-failover.yml`，对应的 PR 正在提交。该 catalog 要求
-仓库创建满 1 天，所以 PR 的 CI 可能持续 pending 约 24 小时；**目前尚未合并，也还没有
-出现在 awesome-dsh-plugin 列表中**，请以 PR 状态为准。
+`data/plugins/PILIHU2022__dsh-proxy-failover.yml`，已提交为
+[PR #9255](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/9255)。
+该 catalog 要求仓库创建满 1 天，所以 PR 的 CI 预计会 pending 约 24 小时后自动转绿；
+**目前尚未合并，也还没有出现在 awesome-dsh-plugin 列表中**，请以 PR 状态为准。
 
 ## License
 

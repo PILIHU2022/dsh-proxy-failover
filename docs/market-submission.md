@@ -17,10 +17,10 @@ still open. Written on 2026-10-25 against the tooling here (dshmarket 1.70.2) an
 | Package metadata | `repository`, `homepage`, `bugs`, `author` point at the public repo; name/version `dsh-proxy-failover` 0.1.0 |
 | Docs | bilingual `README.md` / `README.en.md`; listings in `docs/market-listing.{zh,en}.md` |
 | Icon | `assets/icon-180.png`, a real 180×180 RGBA PNG, is the catalog tile; `icon.svg` stays for DSH's own UI |
-| Catalog entry | `data/plugins/PILIHU2022__dsh-proxy-failover.yml`, category `browser`; PR opened against `awesome-dsh-plugin/awesome-dsh-plugin` — **pending, not merged** |
+| Catalog entry | `data/plugins/PILIHU2022__dsh-proxy-failover.yml`, category `browser`; opened as [PR #9255](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/9255) — **pending, not merged** |
 | Expected pending check | repo age ≥ 1 day: red until 2026-10-26T02:47:46Z, then CI re-runs it on its own |
 | npm / tarball | npm not published (optional; no credentials here), no GitHub Release asset |
-| Format-1 index | optional; needs npm or a real 40-hex commit, marked with `$todo` in `market-entry.json` |
+| Format-1 index | `market-entry.json` points its version source at the pushed git commit `27c2292` (shape-validated with `parseMarketIndex`); serving it is still optional |
 
 No CI result is recorded here; the expected pending state is "only the age gate is red".
 
@@ -100,12 +100,12 @@ in [`market-entry.json`](./market-entry.json) to npm.
 
 ## 7. Format-1 index (optional)
 
-`market-entry.json` holds a shape-valid format-1 plugin object under
+`market-entry.json` holds a format-1 plugin object under
 `registryEntries.dshMarketIndexFormat1`. Its version source is `git`, because there is no npm
 release: `MarketSource` is either `{type: "npm"}` or `{type: "git", url, commit, path?}`, and
-`commit` must be a lowercase 40-hex SHA. That SHA cannot exist before the first push, so the field
-holds `"<commit-sha>"` with a `$todo` beside it: shape-valid, but `parseMarketIndex` rejects the
-version until the value is real. Once the SHA exists, wrap the object in an index and validate:
+`commit` is the lowercase 40-hex SHA of the pushed commit
+`27c22920c64de328990b302ffbd4ec09d275c154`. `parseMarketIndex` accepts this object; wrap it
+in an index document to serve it:
 
 ```bash
 node --input-type=module -e '
@@ -134,7 +134,9 @@ Keep `dsh-web-fetch-proxy` disabled — both plugins install a process-wide rout
 
 ## 9. Still open
 
-- [ ] Fill `versions[0].source.commit` and `publishTimestamp` in `market-entry.json` after the push.
+- [x] Fill `versions[0].source.commit` and `publishTimestamp` in `market-entry.json` after the push.
+  The format-1 object now validates with `parseMarketIndex` against commit
+  `27c22920c64de328990b302ffbd4ec09d275c154`.
 - [ ] Wait out the age gate (2026-10-26T02:47:46Z); the PR stays pending until then and is not merged.
 - [ ] After merge, replace `homepage` with `https://awesome-dsh-plugin.com/p/PILIHU2022/dsh-proxy-failover/`.
 - [ ] Optional: npm publish, a release tarball, or 1-8 screenshots plus `screenshots.json`.

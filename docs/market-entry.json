@@ -151,12 +151,11 @@
       "versions": [
         {
           "version": "0.1.0",
-          "publishTimestamp": 1792896466,
-          "$todo": "Not installable as written. The package has no npm release, so the version source is git, but source.commit is still the literal placeholder \"<commit-sha>\" and parseMarketIndex rejects it because commit must match /^[0-9a-f]{40}$/. After the first push, set source.commit to the pushed lowercase 40-hex SHA and publishTimestamp to that commit's Unix time; the current timestamp is only the repository creation time (2026-10-25T02:47:46Z). Remove this key when done.",
+          "publishTimestamp": 1792897691,
           "source": {
             "type": "git",
             "url": "https://github.com/PILIHU2022/dsh-proxy-failover",
-            "commit": "<commit-sha>"
+            "commit": "27c22920c64de328990b302ffbd4ec09d275c154"
           },
           "engines": {
             "dsh": ">=0.2.0-rc.2 || >=0.2.1-rc.2"
@@ -191,10 +190,8 @@
     }
   },
   "todo": [
-    "Push the initial commit to https://github.com/PILIHU2022/dsh-proxy-failover, then replace versions[0].source.commit (currently \"<commit-sha>\") and publishTimestamp (see the $todo on that version). Until then the format-1 object is shape-valid but not schema-valid.",
     "Wait out the catalog's repo-age gate: the repository was created 2026-10-25T02:47:46Z, so the ≥1-day check stays red until 2026-10-26T02:47:46Z. CI re-runs it automatically; the PR stays pending in the meantime and is not merged.",
     "After merge, replace homepage with the generated storefront page https://awesome-dsh-plugin.com/p/PILIHU2022/dsh-proxy-failover/ (the slug is only known then).",
-    "Optional: publish to npm (needs credentials that are not available here). That would add a download figure and let the format-1 index use {type: npm} instead of a commit SHA; package.json already carries repository/homepage/bugs for the npm ↔ catalog link.",
     "Optional: attach a prebuilt .tgz to a GitHub Release to enable the tarball install; the asset name should be version-free if the latest/download/ URL is used.",
     "Optional: add 1-8 screenshots plus screenshots.json next to package.json; no listing currently claims screenshots, so this is not blocking."
   ]

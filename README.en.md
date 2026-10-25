@@ -171,9 +171,11 @@ node scripts/verify.mjs       # live: proxied path + dead-proxy fallback + stall
   [`docs/market-submission.md`](./docs/market-submission.md)
 
 The catalog entry is `data/plugins/PILIHU2022__dsh-proxy-failover.yml` in
-`awesome-dsh-plugin/awesome-dsh-plugin`; its PR is being submitted. That catalog requires
-the repository to be at least 1 day old, so CI may stay pending for roughly 24 hours. It
-is **not merged and not listed yet** — check the PR status.
+`awesome-dsh-plugin/awesome-dsh-plugin`, submitted as
+[PR #9255](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/9255). That
+catalog requires the repository to be at least 1 day old, so CI is expected to stay
+pending for roughly 24 hours and then clear itself. It is **not merged and not listed
+yet** — check the PR status.
 
 ## Limits
 

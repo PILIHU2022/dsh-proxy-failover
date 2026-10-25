@@ -11,7 +11,7 @@
 | 兼容性 | DSH `>=0.2.0-rc.2` 或 `>=0.2.1-rc.2`；Node `^22.19.0` 或 `>=24`；Linux / Windows / macOS |
 | 许可证 | MIT |
 | 仓库 | `https://github.com/PILIHU2022/dsh-proxy-failover` |
-| 市场页 | 尚未生成：目录条目 PR 待合并；合并后为 `https://awesome-dsh-plugin.com/p/PILIHU2022/dsh-proxy-failover/` |
+| 市场页 | 尚未生成：[PR #9255](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/9255) 待合并；合并后为 `https://awesome-dsh-plugin.com/p/PILIHU2022/dsh-proxy-failover/` |
 | 入口 | bundle patch 插入行 id `proxy-failover`，包名 `dsh-proxy-failover` |
 
 ## 症状

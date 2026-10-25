@@ -11,7 +11,7 @@
 | Compatibility | DSH `>=0.2.0-rc.2` or `>=0.2.1-rc.2`; Node `^22.19.0` or `>=24`; Linux / Windows / macOS |
 | License | MIT |
 | Repository | `https://github.com/PILIHU2022/dsh-proxy-failover` |
-| Market page | Not generated yet — the catalog PR is pending; it becomes `https://awesome-dsh-plugin.com/p/PILIHU2022/dsh-proxy-failover/` after merge |
+| Market page | Not generated yet — [PR #9255](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/9255) is pending; the page becomes `https://awesome-dsh-plugin.com/p/PILIHU2022/dsh-proxy-failover/` after merge |
 | Entry | Bundle patch inserts row id `proxy-failover`, package `dsh-proxy-failover` |
 
 ## The problem
