@@ -1,0 +1,201 @@
+{
+  "$comment": "Proposed market listing for dsh-proxy-failover 0.1.0. This file is a proposal, not a document any registry serves verbatim: DSH has two market shapes, and both are embedded under registryEntries. The flat fields at the top are the listing metadata a human (or a future schema) needs. The package is not published on npm, so every install path here is the GitHub source; npm and tarball commands are kept only as optional notes. One value is deliberately incomplete and marked with $todo: registryEntries.dshMarketIndexFormat1.versions[0].source.commit, because a lowercase 40-hex SHA cannot exist before the first push. See docs/market-submission.md for the current submission record.",
+  "name": "dsh-proxy-failover",
+  "version": "0.1.0",
+  "title": {
+    "zh": "代理容错出网",
+    "en": "Failover Egress"
+  },
+  "summary": {
+    "zh": "web_fetch 在 Mihomo/Clash TUN + fake-ip 下经本地代理出网；代理关闭后同一请求自动改走直连，模型不再重试失效端口。",
+    "en": "Fixes web_fetch under Clash/Mihomo TUN fake-ip and fails over to direct in the same request when the proxy stops."
+  },
+  "description": {
+    "zh": "面向 Mihomo/Clash TUN + fake-ip 的 DSH 出网修复插件：把只监听回环地址的容错 relay 装成进程级代理路由，让 web_fetch 经代理解析域名、绕过非公网地址校验；上游代理关闭时在同一请求内改走直连，探活发现代理恢复后自动切回，模型 API 不再对失效端口反复重试。",
+    "en": "A DSH egress fix for Mihomo/Clash TUN with fake-ip: installs a loopback failover relay as the process-wide proxy route so web_fetch resolves through the proxy and gets past the non-public-address check. When the upstream proxy stops, the same request falls back to a direct connection; a health loop switches back when the proxy returns, so model API calls never retry a dead port."
+  },
+  "longDescription": {
+    "zh": "docs/market-listing.zh.md",
+    "en": "docs/market-listing.en.md"
+  },
+  "category": "browser",
+  "categoryAlternates": [
+    "tools",
+    "dev"
+  ],
+  "tags": [
+    "web-fetch",
+    "proxy",
+    "http-proxy",
+    "clash",
+    "mihomo",
+    "fake-ip",
+    "tun",
+    "failover",
+    "loopback-relay",
+    "network",
+    "dsh-plugin"
+  ],
+  "license": "MIT",
+  "author": "PILIHU2022",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PILIHU2022/dsh-proxy-failover",
+    "directory": "."
+  },
+  "homepage": "https://github.com/PILIHU2022/dsh-proxy-failover",
+  "homepageNote": "The storefront page https://awesome-dsh-plugin.com/p/PILIHU2022/dsh-proxy-failover/ only exists after the catalog entry merges, so homepage currently points at the repository. Replace it once the slug is live.",
+  "install": {
+    "preferred": "github",
+    "github": "dsh plugin --profile web add github:PILIHU2022/dsh-proxy-failover",
+    "link": "dsh plugin --profile web add link:/home/Projects/dsh-plugins/dsh-proxy-failover",
+    "specs": {
+      "github": "github:PILIHU2022/dsh-proxy-failover",
+      "link": "link:/home/Projects/dsh-plugins/dsh-proxy-failover"
+    },
+    "optional": {
+      "npm": {
+        "available": false,
+        "spec": "dsh-proxy-failover",
+        "command": "dsh plugin --profile web add dsh-proxy-failover",
+        "note": "Not published, and not required by the catalog: an entry works without npm, it just shows no download figure. package.json already declares repository/homepage/bugs, so a future publish would link back to this catalog entry and the generated install would become npm > tarball > github."
+      },
+      "tarball": {
+        "available": false,
+        "command": "dsh plugin --profile web add \"https://github.com/PILIHU2022/dsh-proxy-failover/releases/latest/download/dsh-proxy-failover.tgz\"",
+        "note": "No GitHub Release asset exists. Optional: a prebuilt .tgz only changes which command storefronts offer, and is required only for a repository that cannot be installed from source."
+      }
+    }
+  },
+  "dsh": {
+    "engines": {
+      "dsh": ">=0.2.0-rc.2 || >=0.2.1-rc.2",
+      "node": "^22.19.0 || >=24.0.0"
+    },
+    "platforms": [
+      "linux",
+      "win32",
+      "darwin"
+    ],
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "bundleRow": {
+      "id": "proxy-failover",
+      "name": "dsh-proxy-failover"
+    },
+    "categoryNote": "package.json declares dsh.category=extension, which the market does not read: 'extension' is not one of the market's category ids (agi, ui, usage, theme, model, identity, session, memory, tools, wsl, browser, vision, voice, docs, skill, workflow, git, notify, dev, security, remote, market, fun). The submitted catalog entry uses browser, the category existing web_fetch / fake-ip providers already sit in; tools (DNS, proxy, network plumbing) and dev were the alternates."
+  },
+  "icon": "icon.svg",
+  "iconCatalog": "https://raw.githubusercontent.com/PILIHU2022/dsh-proxy-failover/main/assets/icon-180.png",
+  "screenshots": [],
+  "assets": {
+    "icon": {
+      "path": "assets/icon-180.png",
+      "format": "png",
+      "width": 180,
+      "height": 180,
+      "catalogAccepted": true,
+      "sourceIcon": "icon.svg",
+      "note": "The catalog accepts only an https GitHub-hosted raster image (png/jpg/jpeg/webp, drawn at ~96px); SVG and third-party hosts are refused. icon.svg stays in the package for DSH's own UI, icon-180.png is the catalog tile behind iconCatalog."
+    },
+    "screenshots": {
+      "declared": [],
+      "convention": "Screenshots are not a catalog YAML field. Put a screenshots.json next to package.json (1-8 repo-relative paths, e.g. [\"assets/screenshot-1.png\"]), optionally as {\"screenshots\": [...]}. The catalog build resolves them to GitHub-hosted URLs; without it, storefronts extract images from the README. None have been added yet, and no listing claims any."
+    }
+  },
+  "registryEntries": {
+    "awesomeDshPlugin": {
+      "url": "https://github.com/PILIHU2022/dsh-proxy-failover",
+      "name": "PILIHU2022/dsh-proxy-failover",
+      "category": "browser",
+      "description": {
+        "en": "Loopback relay as DSH's process-wide proxy route: web_fetch works under TUN fake-ip; a dead proxy gets same-request direct fallback, and a probe switches back.",
+        "zh": "把回环 HTTP 中继设为 DSH 的进程级代理路由，让 web_fetch 在 Mihomo/Clash TUN fake-ip 下正常出网；上游代理不可用时，同一请求内改走直连，1.5 秒探活发现代理恢复后自动切回。"
+      }
+    },
+    "dshMarketIndexFormat1": {
+      "name": "dsh-proxy-failover",
+      "title": {
+        "zh": "代理容错出网",
+        "en": "Failover Egress"
+      },
+      "description": {
+        "zh": "web_fetch 在 Mihomo/Clash TUN + fake-ip 下经本地代理出网；代理关闭后同一请求自动改走直连，模型不再重试失效端口。",
+        "en": "Fixes web_fetch under Clash/Mihomo TUN fake-ip and fails over to direct in the same request when the proxy stops."
+      },
+      "icon": "https://raw.githubusercontent.com/PILIHU2022/dsh-proxy-failover/main/assets/icon-180.png",
+      "author": "PILIHU2022",
+      "homepage": "https://github.com/PILIHU2022/dsh-proxy-failover",
+      "repository": {
+        "url": "https://github.com/PILIHU2022/dsh-proxy-failover"
+      },
+      "metadata": {
+        "category": "browser",
+        "keywords": [
+          "web-fetch",
+          "proxy",
+          "http-proxy",
+          "clash",
+          "mihomo",
+          "fake-ip",
+          "tun",
+          "failover",
+          "loopback-relay",
+          "network",
+          "dsh-plugin"
+        ],
+        "labels": [],
+        "sortKeys": {}
+      },
+      "versions": [
+        {
+          "version": "0.1.0",
+          "publishTimestamp": 1792896466,
+          "$todo": "Not installable as written. The package has no npm release, so the version source is git, but source.commit is still the literal placeholder \"<commit-sha>\" and parseMarketIndex rejects it because commit must match /^[0-9a-f]{40}$/. After the first push, set source.commit to the pushed lowercase 40-hex SHA and publishTimestamp to that commit's Unix time; the current timestamp is only the repository creation time (2026-10-25T02:47:46Z). Remove this key when done.",
+          "source": {
+            "type": "git",
+            "url": "https://github.com/PILIHU2022/dsh-proxy-failover",
+            "commit": "<commit-sha>"
+          },
+          "engines": {
+            "dsh": ">=0.2.0-rc.2 || >=0.2.1-rc.2"
+          }
+        }
+      ]
+    }
+  },
+  "schemaEvidence": {
+    "catalog": {
+      "shape": "awesome-dsh-plugin data/plugins/<owner>__<repo>.yml",
+      "submittedPath": "data/plugins/PILIHU2022__dsh-proxy-failover.yml",
+      "allowedKeys": [
+        "url",
+        "name",
+        "category",
+        "description",
+        "icon",
+        "tarball"
+      ],
+      "submission": "https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/blob/main/contributing.md",
+      "consumer": "dshmarket 1.70.2 reads https://awesome-dsh-plugin.com/plugins.json; install command is generated as npm > tarball > github. With no npm package and no release asset, this entry yields github:PILIHU2022/dsh-proxy-failover.",
+      "categoryPrecedent": "web_fetch / fake-ip entries in the catalog already sit under browser, e.g. data/plugins/kaminn__dsh-web-fetch-fakeip.yml and data/plugins/wjj-8283__dsh-web-fetch-fakeip-plugin.yml.",
+      "iconRule": "icon must be https on GitHub hosting and raster (png/jpg/jpeg/webp); SVG and third-party hosts are refused, and omitting icon falls back to the owner avatar.",
+      "ageRule": "The repository must be at least 1 day old when CI runs; the check re-runs on its own, so a young repository needs no resubmit."
+    },
+    "index": {
+      "shape": "dsh-plugin-market-index format 1",
+      "source": "@deepseek-ai/dsh-plugin-market-index lib/types/types.d.ts",
+      "consumer": "DSH 0.2.1+ Plugins -> Discover / plugin_market; the awesome-dsh-plugin docs/index.json includes npm-published entries only.",
+      "sourceRule": "MarketSource is either {type: npm} or {type: git, url, commit, path?}, where commit must be a lowercase 40-hex SHA — hence the $todo above."
+    }
+  },
+  "todo": [
+    "Push the initial commit to https://github.com/PILIHU2022/dsh-proxy-failover, then replace versions[0].source.commit (currently \"<commit-sha>\") and publishTimestamp (see the $todo on that version). Until then the format-1 object is shape-valid but not schema-valid.",
+    "Wait out the catalog's repo-age gate: the repository was created 2026-10-25T02:47:46Z, so the ≥1-day check stays red until 2026-10-26T02:47:46Z. CI re-runs it automatically; the PR stays pending in the meantime and is not merged.",
+    "After merge, replace homepage with the generated storefront page https://awesome-dsh-plugin.com/p/PILIHU2022/dsh-proxy-failover/ (the slug is only known then).",
+    "Optional: publish to npm (needs credentials that are not available here). That would add a download figure and let the format-1 index use {type: npm} instead of a commit SHA; package.json already carries repository/homepage/bugs for the npm ↔ catalog link.",
+    "Optional: attach a prebuilt .tgz to a GitHub Release to enable the tarball install; the asset name should be version-free if the latest/download/ URL is used.",
+    "Optional: add 1-8 screenshots plus screenshots.json next to package.json; no listing currently claims screenshots, so this is not blocking."
+  ]
+}

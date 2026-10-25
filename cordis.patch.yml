@@ -1,0 +1,13 @@
+# dsh-proxy-failover — bundle patch.
+#
+# Inserts one host row. The plugin never touches the profile's own patch
+# layer, and every failure path leaves the existing dispatcher untouched.
+- insert:
+    - id: proxy-failover
+      name: dsh-proxy-failover
+      config:
+        # auto  : discover a local Mihomo/Clash proxy; fall back to direct when it is gone
+        # off   : always connect directly (web_fetch still works under TUN fake-ip)
+        # URL   : pin one proxy, e.g. http://127.0.0.1:7890
+        proxy: auto
+        noProxy: ""

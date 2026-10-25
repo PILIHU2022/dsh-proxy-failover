@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Failover Egress",
+    "description": "Routes web_fetch through the local Mihomo/Clash proxy to bypass TUN fake-ip, then fails over to direct connections when the proxy stops, so model requests never retry against a dead proxy."
+  }
+}

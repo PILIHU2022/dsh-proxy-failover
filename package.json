@@ -1,0 +1,85 @@
+{
+  "name": "dsh-proxy-failover",
+  "version": "0.1.0",
+  "description": "DSH 插件：web_fetch 经本地代理（Mihomo/Clash 等）出网以绕过 TUN fake-ip；代理关闭后请求自动改走直连，模型不再对失效代理反复重试。 / Routes web_fetch through the local proxy to bypass TUN fake-ip, then fails over to direct connections when the proxy stops, so model requests never retry against a dead proxy.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./lib/index.js",
+  "icon": "icon.svg",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "locale/*.json",
+    "icon.svg",
+    "assets",
+    "cordis.patch.yml",
+    "README.md",
+    "README.en.md",
+    "LICENSE",
+    "docs"
+  ],
+  "keywords": [
+    "deepseek",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "web-fetch",
+    "proxy",
+    "clash",
+    "mihomo",
+    "fake-ip",
+    "failover",
+    "网络代理"
+  ],
+  "author": "PILIHU2022",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PILIHU2022/dsh-proxy-failover.git"
+  },
+  "homepage": "https://github.com/PILIHU2022/dsh-proxy-failover#readme",
+  "bugs": {
+    "url": "https://github.com/PILIHU2022/dsh-proxy-failover/issues"
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0",
+    "dsh": ">=0.2.0-rc.2 || >=0.2.1-rc.2"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-http-proxy": ">=0.2.0-rc.2",
+    "@deepseek-ai/schemastery": ">=3.18.2"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-http-proxy": {
+      "optional": true
+    },
+    "@deepseek-ai/schemastery": {
+      "optional": true
+    }
+  },
+  "dsh": {
+    "category": "extension",
+    "displayName": "代理容错出网",
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-store",
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "verify": "node scripts/verify.mjs"
+  }
+}

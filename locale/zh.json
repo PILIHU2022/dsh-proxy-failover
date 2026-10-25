@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "代理容错出网",
+    "description": "web_fetch 经本地 Mihomo/Clash 代理出网以绕过 TUN fake-ip；代理关闭后请求自动直连，模型不会对失效代理反复重试。"
+  }
+}
